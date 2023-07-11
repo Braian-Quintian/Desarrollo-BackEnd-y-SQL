@@ -1,5 +1,3 @@
-Mis disculpas por la confusión anterior. Ahora que tengo claridad sobre los requisitos, puedo ayudarte a generar el README.md para el proyecto. Aquí está el README.md actualizado:
-
 # Proyecto de Prueba Desarrollo BackEnd y SQL
 
 Este proyecto es una prueba de desarrollo de Backend y SQL. El objetivo es crear una aplicación Node.js que se conecte a una base de datos MySQL y realice diferentes operaciones a través de endpoints.
