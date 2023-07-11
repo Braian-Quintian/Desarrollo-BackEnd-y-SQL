@@ -22,10 +22,14 @@ router.post('/', async (req, res) => {
         return handleMissingDataError(res);
     }
 
+    const createdBy = created_by || id_responsable;
+    const updateBy = update_by || id_responsable;
+
     try {
         const connection = await getConnection();
-        const insertQuery = 'INSERT INTO bodegas(nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)';
-        const values = [nombre, id_responsable, estado, created_by, update_by];
+        const insertQuery =
+            'INSERT INTO bodegas(nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)';
+        const values = [nombre, id_responsable, estado, createdBy, updateBy];
         await connection.query(insertQuery, values);
         res.send('Bodega creada exitosamente');
     } catch (error) {
@@ -36,5 +40,13 @@ router.post('/', async (req, res) => {
         }
     }
 });
+
+//Este es un ejemplo de la data necesaria para crear una bodega
+/*{
+    "nombre" : "bodegaUANA",
+    "id_responsable" : 11,
+    "estado" : 1,
+  }
+*/
 
 export default router;
