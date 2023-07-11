@@ -83,14 +83,21 @@ Este endpoint permite crear una nueva bodega.
   - Ejemplo de cuerpo de la petición:
     ```json
     {
-      "nombre": "Nueva Bodega",
-      "direccion": "Calle Principal 123",
-      "capacidad": 100
+      "nombre" : "bodegaMA",
+      "id_responsable" : 12,
+      "estado" : 1
     }
     ```
 - Respuesta exitosa:
   - Código de estado: 200 (OK)
   - Cuerpo de respuesta: Mensaje de confirmación de que la bodega se ha creado exitosamente.
+
+¡NOTA!
+```diff
+ - No es necesario enviar el campo "id" en el cuerpo de la petición, ya que este campo se genera automáticamente en la base de datos.
+ - El campo "estado" es un campo de tipo booleano, por lo que solo puede tener los valores 0 o 1.
+ - El campo "id_responsable" debe ser un ID válido de un usuario existente en la base de datos.
+```
 
 ### Productos
 
