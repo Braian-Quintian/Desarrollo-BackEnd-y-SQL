@@ -13,6 +13,24 @@ const app = express();
 
 app.use(express.json());
 
+// Middleware para verificar la autenticación del usuario
+function authenticate(req, res, next) {
+    const isAuthenticated = true; // Lógica de autenticación aquí
+    if (!isAuthenticated) {
+        return res.redirect('/login');
+    }
+    next();
+}
+
+// Middleware para verificar los permisos del usuario
+function authorize(req, res, next) {
+    const hasPermission = true; // Lógica de verificación de permisos aquí
+    if (!hasPermission) {
+        return handleForbiddenError(res);
+    }
+    next();
+}
+
 app.use('/bodegas', authenticate, authorize, bodegasRouter);
 app.use('/productos', authenticate, authorize, productosRouter);
 app.use('/inventarios', authenticate, authorize, inventariosRouter);
