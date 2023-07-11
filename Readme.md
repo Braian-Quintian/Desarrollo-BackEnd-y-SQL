@@ -37,11 +37,6 @@ Se realizaron modificaciones en la base de datos para mejorar su estructura y ga
     - Bodega con ID 58: se modificó el nombre de "Producto Anderson Atuesta" a "Producto Anderson Atuesta2".
     - Bodega con ID 59: se modificó el nombre de "Producto Anderson Atuesta" a "Producto Anderson Atuesta3".
 
-
-
-
-
-
 # Routers
 
 En este README se proporciona una explicación sobre cómo funcionan los distintos routers disponibles en la aplicación, así como ejemplos sobre cómo consumirlos correctamente.
@@ -142,6 +137,89 @@ Ejemplo de solicitud GET utilizando ThunderClient:
 ```bash
 GET /bodegas
 ```
+
+## Inventarios
+
+El router de inventarios (`inventarios.js`) proporciona funcionalidad para crear registros de inventario en el sistema.
+
+#### POST /inventarios
+
+Este endpoint se utiliza para crear o actualizar un registro de inventario en el sistema.
+
+**Método:** POST  
+**URL:** /inventarios
+
+**Cuerpo de la petición:** Objeto JSON que contiene los datos del inventario a crear o actualizar. Los campos requeridos son: `id_producto`, `id_bodega` y `cantidad`.
+
+Ejemplo de cuerpo de la petición:
+
+```json
+{
+  "id_producto": 1,
+  "id_bodega": 1,
+  "cantidad": 10
+}
+```
+
+**Respuesta Exitosa:**
+
+- Código de estado: 200 (OK)
+- Cuerpo de respuesta: Mensaje de confirmación de que el registro de inventario se ha creado o actualizado exitosamente.
+Ejemplo de respuesta exitosa:
+```bash
+Registro de inventario insertado o actualizado exitosamente
+```
+**Respuesta de Error:**
+
+- Código de estado: 400 (Bad Request) si faltan campos requeridos o si la cantidad ingresada es inválida.
+- Código de estado: 409 (Conflict) si hay un error de duplicación de entrada.
+Uso del Endpoint
+Ejemplo de consumo del endpoint POST /inventarios
+
+Para crear o actualizar un registro de inventario, se debe enviar una solicitud POST a la siguiente URL: /inventarios. El cuerpo de la petición debe incluir un objeto JSON con los datos del inventario a crear o actualizar.
+
+Ejemplo de solicitud POST utilizando Thunder Client:
+```bash
+http://localhost:3000/inventarios/
+```
+```json
+{
+  "id_producto": 1,
+  "id_bodega": 1,
+  "cantidad": 10
+}
+```
+La respuesta exitosa de esta solicitud será un mensaje indicando que el registro de inventario se ha creado o actualizado exitosamente.
+
+**Nota:** El router `inventarios.js` utiliza transacciones para asegurar la integridad de los datos. En caso de un error durante la creación o actualización del inventario, se realizará un rollback de la transacción para deshacer cualquier cambio realizado anteriormente.
+
+Funciones de Manejo de Transacciones
+El router `inventarios.js` utiliza las siguientes funciones para manejar las transacciones:
+
+- `startTransaction(connection)`: Inicia una transacción en la conexión proporcionada.
+- `commitTransaction(connection)`: Realiza un commit de la transacción en la conexión proporcionada.
+- `rollbackTransaction(connection)`: Realiza un rollback de la transacción en la conexión proporcionada.
+
+Funciones de Consulta y Actualización del Inventario
+El router `inventarios.js` utiliza las siguientes funciones para consultar y actualizar el inventario:
+
+- `getExistingRecord(connection, id_producto, id_bodega)`: Verifica si existe un registro de inventario para el producto y la bodega proporcionados. Devuelve el registro existente o `null` si no existe.
+- `insertNewInventory(connection, id_producto, id_bodega, cantidad)`: Inserta un nuevo registro de inventario para el producto y la bodega proporcionados.
+- `updateExistingInventory(connection, id_producto, id_bodega, updatedCantidad)`: Actualiza la cantidad de un registro de inventario existente para el producto y la bodega proporcionados.
+
+Función de Manejo de Errores
+El router `inventarios.js` utiliza la función `handleError(error, res)` para manejar los errores. Esta función verifica el código de error y responde adecuadamente:
+
+- Si el código de error es `'ER_DUP_ENTRY'`, se utiliza `handleDuplicateEntryError(res)` para enviar una respuesta de error de duplicación de entrada.
+- Si el código de error es `'ER_WARN_DATA_OUT_OF_RANGE'`, se utiliza `handleInvalidDataError(res, 'La cantidad ingresada es inválida')` para enviar una respuesta de error de datos inválidos.
+- En cualquier otro caso, se propaga el error para que sea manejado por el manejador de errores global.
+
+Espero que esta información sea útil para comprender cómo utilizar y consumir el router `inventarios.js` en tu aplicación.
+
+Si tienes alguna otra pregunta, no dudes en hacerla.
+
+
+
 
 ### Otras tablas
 
