@@ -1,3 +1,47 @@
+# Cambios en la base de datos
+
+Se realizaron modificaciones en la base de datos para mejorar su estructura y garantizar la integridad de los datos. A continuación se detallan los cambios realizados:
+
+## Usuarios
+
+- Se agregó la restricción UNIQUE a la columna `email` para evitar correos electrónicos duplicados.
+
+## Bodegas
+
+- Se aplicó la restricción UNIQUE a la columna `nombre` para evitar nombres de bodegas duplicados.
+- Se realizaron las siguientes modificaciones en las bodegas para resolver duplicidades de nombres:
+  - Bodega con ID 28: se modificó el nombre de "prueba" a "prueba1".
+  - Bodega con ID 38: se modificó el nombre de "bodega fg" a "bodega fg1".
+  - Bodega con ID 40: se modificó el nombre de "bodega fg 2" a "bodega fg 3".
+  - Bodega con ID 43: se modificó el nombre de "Bodega Developer 13.2" a "Bodega Developer 13.2.1".
+
+## Productos
+
+- Se aplicó la restricción UNIQUE a la columna `nombre` para evitar nombres de productos duplicados.
+- Se realizaron las siguientes modificaciones en los productos para resolver duplicidades de nombres:
+  - Producto con ID 36: se modificó el nombre de "producto fg 1" a "producto fg 2".
+  - Producto con ID 37: se modificó el nombre de "producto fg 1" a "producto fg 3".
+  - Producto con ID 42: se modificó el nombre de "gato" a "gato1".
+  - Producto con ID 44: se modificó el nombre de "whiskas" a "whiskas1".
+  - Producto con ID 45: se modificó el nombre de "whiskas" a "whiskas2".
+  - Producto con ID 46: se modificó el nombre de "whiskas" a "whiskas3".
+  - Producto con ID 47: se modificó el nombre de "whiskas" a "whiskas4".
+  - Producto con ID 48: se modificó el nombre de "whiskas" a "whiskas5".
+  - Producto con ID 49: se modificó el nombre de "whiskas" a "whiskas6".
+  - Producto con ID 50: se modificó el nombre de "whiskas" a "whiskas7".
+  - Producto con ID 51: se modificó el nombre de "whiskas" a "whiskas8".
+  - Producto con ID 52: se modificó el nombre de "whiskas" a "whiskas9".
+  - Producto con ID 53: se modificó el nombre de "whiskas" a "whiskas10".
+  - Producto con ID 54: se modificó el nombre de "whiskas" a "whiskas11".
+  - Producto con ID 57: se modificó el nombre de "Producto Anderson Atuesta" a "Producto Anderson Atuesta1".
+  - Producto con ID 58: se modificó el nombre de "Producto Anderson Atuesta" a "Producto Anderson Atuesta2".
+  - Producto con ID 59: se modificó el nombre de "Producto Anderson Atuesta" a "Producto Anderson Atuesta3".
+
+Estos cambios mejoran la estructura y evitan duplicidades en los datos almacenados en la base de datos.
+
+Si tienes alguna pregunta adicional, no dudes en preguntar.
+
+
 # Proyecto de Prueba Desarrollo BackEnd y SQL
 
 Este proyecto es una prueba de desarrollo de Backend y SQL. El objetivo es crear una aplicación Node.js que se conecte a una base de datos MySQL y realice diferentes operaciones a través de endpoints.
