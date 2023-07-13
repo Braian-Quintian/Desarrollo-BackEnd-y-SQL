@@ -182,3 +182,4 @@ Si tienes alguna pregunta adicional o necesitas más información sobre cómo co
 ¡Gracias por tu atención!
 
 Nota: Recuerda que es importante configurar correctamente la conexión a tu base de datos en el archivo `config.js` antes de ejecutar la aplicación.
+
